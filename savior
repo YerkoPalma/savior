@@ -1,0 +1,28 @@
+#!/bin/bash
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+# if there is not TEMPLATE folder
+if [ -z "$TEMPLATES" ]; then
+  printf "%sbin/savior:%s TEMPLATES variable not set\n" "$bold" "$normal"
+  exit 1
+fi
+
+# if there is no template specified
+if [ $# = "0" ]; then
+  printf "%susage:%s savior <template_name>\n" "$bold" "$normal"
+  exit 1
+fi
+
+# set the current template
+template="$TEMPLATES/$1/main"
+
+# if the main file of the template is not executable or doesn't exists
+if [ ! -x "$template" ]; then
+  printf '%sbin/savior:%s template %s does not exist\n' "$bold" "$normal" "$1"
+  exit 1
+fi
+
+shift
+"$template" "$@"

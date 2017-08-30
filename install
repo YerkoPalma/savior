@@ -1,0 +1,4 @@
+[ ! -d /usr/local/bin ] && echo "/usr/local/bin does not exist" && exit 1
+[ ! -O /usr/local/bin ] && SUDO_MAYBE=sudo
+$SUDO_MAYBE curl -fso /usr/local/bin/savior https://raw.githubusercontent.com/YerkoPalma/savior/master/savior
+$SUDO_MAYBE chmod +x /usr/local/bin/savior
